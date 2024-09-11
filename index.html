@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Components in React</title>
+
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        // Header Component
+
+        const Header = ({ title }) => {
+
+            return (
+
+                <header>
+
+                    <h1>{title}</h1>
+
+                </header>
+
+            );
+
+        };
+
+
+        const ListItem = ({ item }) => {
+
+            const { name, category } = item;
+
+
+            const itemStyle = {
+
+                padding: '10px',
+
+                margin: '10px 0',
+
+                border: '1px solid #ccc',
+
+                backgroundColor: category === 'paid' ? '#f8d7da' : '#d4edda',
+
+                color: category === 'paid' ? '#721c24' : '#155724',
+
+                borderRadius: '5px'
+
+            };
+
+            return (
+
+                <li style={itemStyle}>
+
+                    {name} - {category === 'paid' ? 'Paid' : 'Free'}
+
+                </li>
+
+            );
+
+        };
+
+        const List = ({ items }) => {
+
+            return (
+
+                <ul style={{ listStyleType: 'none', padding: 0 }}>
+
+                    {items.map((item, index) => (
+
+                        <ListItem key={index} item={item} />
+
+                    ))}
+
+                </ul>
+
+            );
+
+        };
+
+        const App = () => {
+
+
+            const items = [
+
+                { name: 'Item 1', category: 'free' },
+
+                { name: 'Item 2', category: 'paid' },
+
+                { name: 'Item 3', category: 'free' },
+
+                { name: 'Item 4', category: 'paid' }
+
+            ];
+
+            return (
+
+                <div style={{ width: '50%', margin: '0 auto', textAlign: 'center' }}>
+
+                    <Header title="My Item List" />
+
+                    <List items={items} />
+
+                </div>
+
+            );
+
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+
+    </script>
+
+</body>
+
+</html>
